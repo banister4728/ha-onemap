@@ -15,9 +15,11 @@ Place names for your people and trackers, from [OneMap](https://www.onemap.gov.s
 
 ## Install
 
-1. In HACS, open the menu (⋮) → **Custom repositories**. Add `https://github.com/banister4728/ha-onemap` with type **Integration**.
-2. Find **OneMap Singapore** in HACS and download it.
+1. **Settings → Marketplace → Add from link.** Enter `banister4728/ha-onemap`; if asked for a type, pick **Integration**.
+2. Open **OneMap Singapore** in the list and select **Install**.
 3. Restart Home Assistant.
+
+On Home Assistant older than 2026.11, use HACS instead: menu (⋮) → **Custom repositories**, add the same link as an **Integration**, then download it.
 4. **Settings → Devices & services → Add integration → OneMap Singapore.** Sign in with your OneMap account, then pick the people or trackers to follow.
 
 You need a free OneMap API account: register on the OneMap developer site with an email address and set the password from the email it sends.

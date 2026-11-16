@@ -8,6 +8,7 @@ from __future__ import annotations
 import asyncio
 from dataclasses import dataclass, field
 import math
+import re
 import time
 from typing import Any
 
@@ -17,6 +18,7 @@ from .const import REVGEOCODE_URL, SEARCH_URL, TOKEN_RENEW_MARGIN, TOKEN_URL
 
 TIMEOUT = aiohttp.ClientTimeout(total=20)
 _MISSING = {"", "nil", "null", "none", "na", "n/a"}
+_ACRONYMS = re.compile(r"\b(Mrt|Lrt|Hdb|Ite|Nus|Ntu|Smu|Sutd|Ymca|Ywca)\b")
 
 
 class OneMapError(Exception):
@@ -48,8 +50,11 @@ def distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
 
 
 def _title(text: str | None) -> str | None:
-    # OneMap answers in capitals: "PARKWAY PARADE" -> "Parkway Parade"
-    return text.title() if text else None
+    # OneMap answers in capitals: "PARKWAY PARADE" -> "Parkway Parade", keeping "MRT" and "St Andrew's"
+    if not text:
+        return None
+    titled = re.sub(r"(\w)'S\b", r"\1's", text.title())
+    return _ACRONYMS.sub(lambda m: m.group(1).upper(), titled)
 
 
 @dataclass

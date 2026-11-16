@@ -56,6 +56,9 @@ def test_place_names():
     assert Place.from_api(PARKWAY["GeocodeInfo"][1], 1.3011, 103.9053).name == "Parkway Parade"
     hdb = Place.from_api(PARKWAY["GeocodeInfo"][0], 1.3011, 103.9053)
     assert hdb.building is None and hdb.name == "Blk 81 Marine Parade Central"
+    mrt = Place.from_api({"BUILDINGNAME": "MARINE PARADE MRT STATION"}, 1.3, 103.9)
+    assert mrt.name == "Marine Parade MRT Station"
+    assert Place.from_api({"BUILDINGNAME": "ST ANDREW'S CATHEDRAL"}, 1.3, 103.9).name == "St Andrew's Cathedral"
 
 
 async def test_config_flow(hass: HomeAssistant, aioclient_mock):
