@@ -1,0 +1,13 @@
+{
+  "domain": "onemap",
+  "name": "OneMap Singapore",
+  "codeowners": ["@banister4728"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/banister4728/ha-onemap",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/banister4728/ha-onemap/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

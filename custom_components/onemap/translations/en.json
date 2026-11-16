@@ -1,0 +1,72 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "OneMap account",
+        "description": "Sign in with your free OneMap API account (register at onemap.gov.sg). The token it hands out lasts 3 days; this integration renews it by itself.",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      },
+      "settings": {
+        "title": "Place sensors",
+        "description": "Pick the people or trackers to get a place sensor. A lookup is only sent to OneMap when one of them is outside every zone and has moved.",
+        "data": {
+          "tracked_entities": "People and trackers",
+          "buffer": "Search radius",
+          "min_distance": "Move this far before a new lookup",
+          "use_zone_names": "In a zone, show the zone instead of looking it up"
+        }
+      },
+      "reauth_confirm": {
+        "title": "OneMap sign-in failed",
+        "description": "OneMap refused the password for {email}. Enter the current one.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "OneMap refused the email or password.",
+      "cannot_connect": "Couldn't reach OneMap. Try again shortly."
+    },
+    "abort": {
+      "already_configured": "This OneMap account is already set up.",
+      "reauth_successful": "Signed in again."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Place sensors",
+        "description": "Pick the people or trackers to get a place sensor. A lookup is only sent to OneMap when one of them is outside every zone and has moved.",
+        "data": {
+          "tracked_entities": "People and trackers",
+          "buffer": "Search radius",
+          "min_distance": "Move this far before a new lookup",
+          "use_zone_names": "In a zone, show the zone instead of looking it up"
+        }
+      }
+    }
+  },
+  "services": {
+    "reverse_geocode": {
+      "name": "Reverse geocode",
+      "description": "Names of the buildings or addresses near a point, nearest first.",
+      "fields": {
+        "latitude": { "name": "Latitude", "description": "Latitude of the point." },
+        "longitude": { "name": "Longitude", "description": "Longitude of the point." },
+        "buffer": { "name": "Search radius", "description": "How far around the point to look, in metres (0-500)." }
+      }
+    },
+    "search": {
+      "name": "Search",
+      "description": "Find a place by name, address or postal code.",
+      "fields": {
+        "query": { "name": "Query", "description": "Building name, address or postal code." },
+        "page": { "name": "Page", "description": "Results come 10 to a page." }
+      }
+    }
+  }
+}
